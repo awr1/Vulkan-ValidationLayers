@@ -186,9 +186,12 @@ class VkRenderFramework : public VkTestFramework {
 class VkDescriptorSetObj;
 class VkConstantBufferObj;
 class VkPipelineObj;
-class VkDescriptorSetObj;
 typedef vk_testing::Fence VkFenceObj;
 typedef vk_testing::Buffer VkBufferObj;
+typedef vk_testing::Semaphore VkSemaphoreObj;
+typedef vk_testing::Event VkEventObj;
+typedef vk_testing::DeviceMemory VkDeviceMemoryObj;
+typedef vk_testing::DescriptorPool VkDescriptorPoolObj;
 
 class VkCommandPoolObj : public vk_testing::CommandPool {
    public:

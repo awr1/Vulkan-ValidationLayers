@@ -387,7 +387,9 @@ class Buffer : public internal::NonDispHandle<VkBuffer> {
     // vkCreateBuffer()
     void init(const Device &dev, const VkBufferCreateInfo &info, VkMemoryPropertyFlags mem_props);
     void init(const Device &dev, const VkBufferCreateInfo &info) { init(dev, info, 0); }
-    void init(const Device &dev, VkDeviceSize size, VkMemoryPropertyFlags mem_props) { init(dev, create_info(size, 0), mem_props); }
+    void init(const Device &dev, VkDeviceSize size, VkMemoryPropertyFlags mem_props) {
+        init(dev, create_info(size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT), mem_props);
+    }
     void init(const Device &dev, VkDeviceSize size) { init(dev, size, 0); }
     void init_as_src(const Device &dev, VkDeviceSize size, VkMemoryPropertyFlags &reqs,
                      const std::vector<uint32_t> *queue_families = nullptr) {

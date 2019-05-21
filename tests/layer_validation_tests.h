@@ -83,22 +83,39 @@ enum BsoFailSelect {
     BsoFailIndexBufferBadMapOffset
 };
 
+static const char minimalShaderText[] = "#version 450\nvoid main() {}\n";
+
 static const char bindStateVertShaderText[] =
     "#version 450\n"
-    "vec2 vertices[3];\n"
     "void main() {\n"
-    "      vertices[0] = vec2(-1.0, -1.0);\n"
-    "      vertices[1] = vec2( 1.0, -1.0);\n"
-    "      vertices[2] = vec2( 0.0,  1.0);\n"
-    "   gl_Position = vec4(vertices[gl_VertexIndex % 3], 0.0, 1.0);\n"
+    "    gl_Position = vec4(1);\n"
+    "}\n";
+
+static const char bindStatePointVertShaderText[] =
+    "#version 450\n"
+    "out gl_PerVertex\n"
+    "{\n"
+    "    vec4 gl_Position;\n"
+    "    float gl_PointSize;\n"
+    "};\n"
+    "void main() {\n"
+    "    gl_Position = vec4(1.0);\n"
+    "    gl_PointSize = 1.0;\n"
     "}\n";
 
 static const char bindStateFragShaderText[] =
     "#version 450\n"
-    "\n"
     "layout(location = 0) out vec4 uFragColor;\n"
     "void main(){\n"
     "   uFragColor = vec4(0,1,0,1);\n"
+    "}\n";
+
+static const char bindStateSampler2DFragShaderText[] =
+    "#version 450\n"
+    "layout(set=0, binding=0) uniform sampler2D s;\n"
+    "layout(location=0) out vec4 x;\n"
+    "void main(){\n"
+    "   x = texture(s, vec2(1));\n"
     "}\n";
 
 // Static arrays helper
